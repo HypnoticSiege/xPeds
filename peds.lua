@@ -1,31 +1,20 @@
 local myPed = PlayerPedId()
 local localPed = PlayerId()
-
-
-
     function notify(string)
         SetNotificationTextEntry("STRING")
         AddTextComponentString(string)
         DrawNotification(true, false)
     end
-
-
-
-
     function loadModel(modelHash)
         local model = GetHashKey(modelHash)
         RequestModel(model)
         while not HasModelLoaded(model) do
             RequestModel(model)
             Citizen.Wait(0)
-        end
-
-
-        
+        end        
         SetPlayerModel(localPed, model)
         SetModelAsNoLongerNeeded(model)
     end
-
 
 
     --SHERIFF PED
@@ -35,13 +24,11 @@ local localPed = PlayerId()
     end, false)
 
 
-
     --PD PED
     RegisterCommand('cop', function()
         loadModel("s_m_y_cop_01")
         notify("~b~Police~w~ Ped Applied!")
     end, false)
-
 
 
     --SWAT PED
@@ -51,21 +38,11 @@ local localPed = PlayerId()
     end, false)
 
 
-
-    --Thingy2
-    RegisterCommand('gu', function()
-        loadModel("lspdofficer_01")
-        notify("~r~SWAT~w~ Ped Applied!")
-    end, false)
-
-
-
     --PRISONER PED
     RegisterCommand('prisoner', function()
         loadModel("S_M_Y_Prisoner_01")
         notify("~o~Prisoner~w~ Ped Applied!")
     end, false)
-
 
 
     --EMS PED
@@ -75,13 +52,11 @@ local localPed = PlayerId()
     end, false)
 
 
-
     --FIRE PED
     RegisterCommand('fire', function()
         loadModel('S_M_Y_Fireman_01')
         notify("~r~Fire~w~ Ped Applied!")
     end, false)
-
 
 
     --Remove Ped #2
@@ -90,8 +65,6 @@ local localPed = PlayerId()
         notify("~g~Sucess!~w~ Ped Removed!")
     end, false)
 
-
-
     --Remove Ped
     RegisterCommand('pedremove', function()
         loadModel('a_m_y_hipster_01')
@@ -99,8 +72,7 @@ local localPed = PlayerId()
     end, false)
 
 
-
-    --Chat Under Thingy
+    --Chat Suggestions
     TriggerEvent('chat:addSuggestion', '/sheriff', 'Applies Sheriff Ped!')        
     TriggerEvent('chat:addSuggestion', '/cop', 'Applies Police Dept. Ped!')
     TriggerEvent('chat:addSuggestion', '/swat', 'Loads the SWAT Team loadout')    
